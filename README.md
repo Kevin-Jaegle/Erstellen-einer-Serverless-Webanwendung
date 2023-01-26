@@ -24,13 +24,13 @@ I select eu-central-1 (Frankfurt) as the region in which the web application is 
 
 To manage my source code I decided to use AWS CodeCommit. In it I create a new repository called "wildrydes-site" and clone the repository. In the terminal window I then run the following command and HTTPS URL: 
 
-´$ git clone https://git-codecommit.us-east1.amazonaws.com/v1/repos/wildrydes-site´
+`$ git clone https://git-codecommit.us-east1.amazonaws.com/v1/repos/wildrydes-site`
 
 ### Fill out the Git repository
 
 I change to the directory in my repository and copy the static files from S3:
 
-´aws s3 cp s3://wildrydes-us-east-1/WebApplication/1_StaticWebHosting/website ./ --recursive´
+`aws s3 cp s3://wildrydes-us-east-1/WebApplication/1_StaticWebHosting/website ./ --recursive`
 
 I then transfer the data to CodeCommit.
 
@@ -48,7 +48,7 @@ If everything has worked i can now access this page:
 
 ## Step 2: User management
 
-In this step, I create an Amazon Cognito user pool to manage my users' accounts.
+In this step, I create an Amazon Cognito user pool to manage my users accounts.
 
 ## Architecture overview
 
