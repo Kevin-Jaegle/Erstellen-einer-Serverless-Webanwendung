@@ -44,4 +44,26 @@ If everything has worked i can now access this page:
 
 ![giddy](https://user-images.githubusercontent.com/122367884/214876345-2fe340d9-2525-4cd5-9873-738c7715f4bf.jpg)
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Step 2: User management
+
+In this step, I create an Amazon Cognito user pool to manage my users' accounts.
+
+## Architecture overview
+
+![Serverless_Web_App_LP_assets-03 1403870f0fabeb6a11d3e4116092aa6b19b6a924](https://user-images.githubusercontent.com/122367884/214877472-5964c210-3089-4f68-af6d-320986f44d64.png)
+
+### Create an Amazon Cognito user pool
+
+I create a user pool with the name WildRydes.
+
+### Adding an app to your user pool
+
+I then create an app client called WildeRydesWebApp.
+
+### Update website configuration 
+
+Under CodeCommit I open the file `config.js` pass here the userPoolClientId and App-Client-ID and save the modified file.
+
+![iScreen Shoter - 20230126165251868](https://user-images.githubusercontent.com/122367884/214883327-423099a7-edf5-4624-9a38-76cc56742ee7.jpg)
