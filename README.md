@@ -24,13 +24,13 @@ I select eu-central-1 (Frankfurt) as the region in which the web application is 
 
 To manage my source code I decided to use AWS CodeCommit. In it I create a new repository called "wildrydes-site" and clone the repository. In the terminal window I then run the following command and HTTPS URL: 
 
-$ git clone https://git-codecommit.us-east1.amazonaws.com/v1/repos/wildrydes-site
+´$ git clone https://git-codecommit.us-east1.amazonaws.com/v1/repos/wildrydes-site´
 
 ### Fill out the Git repository
 
 I change to the directory in my repository and copy the static files from S3:
 
-aws s3 cp s3://wildrydes-us-east-1/WebApplication/1_StaticWebHosting/website ./ --recursive
+´aws s3 cp s3://wildrydes-us-east-1/WebApplication/1_StaticWebHosting/website ./ --recursive´
 
 I then transfer the data to CodeCommit.
 
@@ -58,6 +58,9 @@ In this step, I create an Amazon Cognito user pool to manage my users' accounts.
 
 I create a user pool with the name WildRydes.
 
+![Benutzerpool](https://user-images.githubusercontent.com/122367884/214885386-00bc998b-a8bd-47c5-9dcc-1767802d05ec.jpg)
+
+
 ### Adding an app to your user pool
 
 I then create an app client called WildeRydesWebApp.
@@ -67,3 +70,13 @@ I then create an app client called WildeRydesWebApp.
 Under CodeCommit I open the file `config.js` pass here the userPoolClientId and App-Client-ID and save the modified file.
 
 ![iScreen Shoter - 20230126165251868](https://user-images.githubusercontent.com/122367884/214883327-423099a7-edf5-4624-9a38-76cc56742ee7.jpg)
+
+### Validate my implementation
+
+I go to the homepage of my website and click on Giddy Up. Now I fill out the registration formular and choose Let's Ride. I enter my e-mail address and choose a password that contains at least one capital letter, one number and one special character. Once the registration is complete, I receive an email with a verification code: 
+
+![new verfi](https://user-images.githubusercontent.com/122367884/214886439-1626f375-4f7c-4fff-9cfb-35ceacc7d291.jpg)
+
+I enter the verification code to complete the account creation.
+
+![Success](https://user-images.githubusercontent.com/122367884/214886982-09e395c7-8dee-4d61-aab8-7d80036ef57d.jpg)
