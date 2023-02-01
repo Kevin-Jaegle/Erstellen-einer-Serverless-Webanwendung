@@ -29,4 +29,4 @@ I use AWS CodeCommit to host my website's repository. CodeCommit is part of the 
 1. First I create a new CodeCommit repository:
 
 `aws codecommit create-repository \
-  --repository-name wild-rydes
+  --repository-name wild-rydes`
