@@ -30,3 +30,11 @@ I use AWS CodeCommit to host my website's repository. CodeCommit is part of the 
 
 `aws codecommit create-repository \
   --repository-name wild-rydes`
+  
+2. I clone the existing (not new) workshop repository from GitHub:
+
+`git clone https://github.com/aws-samples/aws-serverless-webapp-workshop.git`
+
+3. I change to the directory of the workshop repository:
+
+`cd aws-serverless-webapp-workshop`
