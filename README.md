@@ -19,3 +19,14 @@ In this section, I set up the AWS Amplify Console to host the static components 
 The architecture of this module is very simple. The AWS Amplify Console and Amazon CloudFront will manage and serve all my static web content, such as HTML, CSS, JavaScript, images, and other files. End users can then access your website through the public website URL provided by the AWS Amplify Console. There is no need to run web servers or use other services to make this website available.
 
 <img width="816" alt="static-website-architecture" src="https://user-images.githubusercontent.com/122367884/216047293-9f392bff-dc02-4f90-97d4-712f64018742.png">
+
+## REPOSITORY
+
+I use AWS CodeCommit to host my website's repository. CodeCommit is part of the free AWS offering.
+
+### Setting up my CodeCommit repository
+
+1. First I create a new CodeCommit repository:
+
+´aws codecommit create-repository \
+  --repository-name wild-rydes´
