@@ -24,47 +24,80 @@ The architecture of this module is very simple. The AWS Amplify Console and Amaz
 
 I use AWS CodeCommit to host my website's repository. CodeCommit is part of the free AWS offering.
 
-### Setting up my CodeCommit repository
+## DEPLOY
+
+### Deploying the website using AWS Amplify Console
+
+Next, I deploy the website I committed to Git using the AWS Amplify Console. This platform streamlines the process of setting up a code repository for my static web app and offers various helpful features that ease its lifecycle management and promote best practices.
+
+![Bereitstellen](https://user-images.githubusercontent.com/122367884/216269704-68a0d159-8af0-407d-8f4c-1381d323cb8f.jpg)
+
+![wilderyde website](https://user-images.githubusercontent.com/122367884/216269862-fd251be8-d88d-4f07-b45b-6667a54d39b5.jpg)
+
+## USER MANAGEMENT
+
+## Overview
+
+In this section, I use the AWS Amplify CLI to set up an Amazon Cognito user pool for managing user accounts. This includes pages for customers to register as new users, confirm their email address, and log in to the site.
+
+### Architecture Overview
+
+When users access my website, they first register a new account by providing an email address and password. Upon submission, Amazon Cognito sends a confirmation email with a verification code to the specified email address. Users then return to the website and enter their email and verification code to confirm their account. Alternatively, I can manually confirm user accounts through the Amazon Cognito console for testing purposes.
+
+After successful confirmation, users can log in by entering their username (or email) and password. A JavaScript function interacts with Amazon Cognito and uses the Secure Remote Password (SRP) protocol to authenticate the user. The function then receives JSON Web Tokens (JWTs) containing the user's identity information, which are utilized in the next section for authentication against the RESTful API created with Amazon API Gateway.
+
+![authentication-architecture](https://user-images.githubusercontent.com/122367884/216281160-d18b63d4-94be-4e6f-9f44-d5dfe2d44cb2.png)
+
+## AMPLIFY CLI
+
+### Initialize AWS Amplify CLI
+
+The AWS Amplify CLI is a comprehensive tool that allows you to create, integrate, and manage AWS services for your app. This tool integrates with the Amplify JavaScript library and the AWS Mobile SDKs for iOS and Android.
+
+The AWS Amplify Authentication module offers APIs and components for developers to build user authentication experiences.
+
+![iScreen Shoter - 20230202113041474](https://user-images.githubusercontent.com/122367884/216300681-4a6d6e66-b208-4011-a13a-95015e04077f.jpg)
+
+## USER POOL
+
+### Creating a User Pool in Amazon Cognito using the AWS Amplify CLI.
+
+Amazon Cognito User Pools is a robust user directory service that handles user registration, authentication, and account recovery. On the other hand, Amazon Cognito Federated Identities enables users to access AWS services.
+
+Amplify integrates with User Pools to store user information, including federation with other OpenID providers like Facebook and Google. Amplify also utilizes Federated Identities to manage user access to AWS resources, such as allowing users to upload a file to an S3 bucket. The Amplify CLI simplifies the management of access control policies for these AWS resources and provides precise access controls through GraphQL to secure the data in your APIs.
+
+In this section, I will use the Amplify CLI to create a new Cognito user pool with its default settings and then utilize the Amazon Cognito Console to manage the pool.
+
+## CREATE A USER
+
+### Create a new user in my user pool
+
+To eliminate the need for manual coding of registration, verification, and login processes, I have included a functional implementation in the assets from the first module, using the AWS Amplify Authentication UI component.
+
+The Authenticator component offers basic login/logout features for an app, as well as verification steps for new user registration and user login.
+
+To use: `<amplify-authenticator></amplify-authenticator>`
+
+<img width="604" alt="successful-login" src="https://user-images.githubusercontent.com/122367884/216338101-cb181fe3-1b09-43fd-ac74-ba240eca3219.png">
+
+## SERVERLESS BACKEND
+
+### Overview
+
+In this section, I will use AWS Lambda and Amazon DynamoDB to create a backend system for handling requests from my web app. The browser app provided in the first section allows users to send a unicorn to a desired location. To fulfill these requests, the JavaScript code in the browser calls a cloud-based service.
+
+I will implement a Lambda function that is activated each time a user requests a unicorn. The function selects a unicorn from the fleet, records the request in a DynamoDB table, and responds to the front-end app with information about the unicorn that was sent.
+
+![serverless-backend-architecture](https://user-images.githubusercontent.com/122367884/216339675-8ab613a0-3ed4-46d6-8850-ad44176af191.png)
+
+The browser invokes the function via the Amazon API Gateway. The implementation of this connection is covered in the following section. This section focuses on testing the function independently.
+
+## DYNAMODB
+
+### Generate an Amazon DynamoDB table
 
 
-1. First I create a new CodeCommit repository:
 
-`aws codecommit create-repository \
-  --repository-name wild-rydes`
-  
-2. I clone the existing (not new) workshop repository from GitHub:
 
-`git clone https://github.com/aws-samples/aws-serverless-webapp-workshop.git`
 
-3. I change to the directory of the workshop repository:
 
-`cd aws-serverless-webapp-workshop`
-
-4. Separation of the WildRydesVue code into a separate branch:
-
-`sudo yum install git-subtree -y
-git subtree split -P resources/code/WildRydesVue -b WildRydesVue`
-
-5. I establish a new folder for my CodeCommit repository:
-
-`mkdir ../wild-rydes && cd ../wild-rydes`
-
-6. I initiate a new Git repository:
-
-`git init`
-
-7. I retrieve the WildRydesVue branch into my new repository:
-
-`git pull ../aws-serverless-webapp-workshop WildRydesVue`
-
-8. I Add CodeCommit repository as a remote to my local repo:
-
-`git remote add origin codecommit://wild-rydes`
-
-9. I Push the code to my newly created CodeCommit repository:
-
-`git push -u origin master`
-
-10. I delete the temporary local repository I made in step 2.
-
-`rm -rf ../aws-serverless-webapp-workshop`
