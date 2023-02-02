@@ -26,6 +26,7 @@ I use AWS CodeCommit to host my website's repository. CodeCommit is part of the 
 
 ### Setting up my CodeCommit repository
 
+
 1. First I create a new CodeCommit repository:
 
 `aws codecommit create-repository \
@@ -38,3 +39,32 @@ I use AWS CodeCommit to host my website's repository. CodeCommit is part of the 
 3. I change to the directory of the workshop repository:
 
 `cd aws-serverless-webapp-workshop`
+
+4. Separation of the WildRydesVue code into a separate branch:
+
+`sudo yum install git-subtree -y
+git subtree split -P resources/code/WildRydesVue -b WildRydesVue`
+
+5. I establish a new folder for my CodeCommit repository:
+
+`mkdir ../wild-rydes && cd ../wild-rydes`
+
+6. I initiate a new Git repository:
+
+`git init`
+
+7. I retrieve the WildRydesVue branch into my new repository:
+
+`git pull ../aws-serverless-webapp-workshop WildRydesVue`
+
+8. I Add CodeCommit repository as a remote to my local repo:
+
+`git remote add origin codecommit://wild-rydes`
+
+9. I Push the code to my newly created CodeCommit repository:
+
+`git push -u origin master`
+
+10. I delete the temporary local repository I made in step 2.
+
+`rm -rf ../aws-serverless-webapp-workshop`
